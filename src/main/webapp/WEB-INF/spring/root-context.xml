@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 데이터베이스 연결 property는 setter 인젝션 --> 
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"/>
+		<property name="username" value="hyeokho"/>
+		<property name="password" value="hjseo687"/>
+		<!-- <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@mydb.cqcoya9ktimf.ap-northeast-2.rds.amazonaws.com:1521:ORCL"/>
+    	<property name="username" value="khs9628"/>
+    	<property name="password" value="1q2w3e4r"/> -->
+	</bean>	
+	
+	<!-- HikariCP configuuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close" autowire-candidate="true">
+		<constructor-arg ref="hikariConfig"/>
+	</bean>
+
+	<!-- Spring과 Mybatis 연동 설정 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- Mybatis관련 어노테이션이나 XML을 찾아서 처리 -->
+	<mybatis-spring:scan base-package="org.board.mapper"/>
+	
+	<!-- @Component와 상속받은 설정된 클래스들을 자동으로 객체 생성 -->
+	<context:component-scan base-package="org.board.service" />	
+	<!-- Quartz 설정 -->
+	<task:annotation-driven/>
+	<aop:aspectj-autoproxy/> 
+</beans>
