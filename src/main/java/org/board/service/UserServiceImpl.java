@@ -69,11 +69,11 @@ public class UserServiceImpl implements UserService{
 		// Mail Server 설정
 				String charSet = "utf-8";
 				String hostSMTP = "smtp.naver.com";
-				String hostSMTPid = "springmailtest";
-				String hostSMTPpwd = "1!2@3#4$";
+				String hostSMTPid = "";
+				String hostSMTPpwd = "";
 
 				// 보내는 사람 mem_email, 제목, 내용
-				String frommem_email = "springmailtest@naver.com";
+				String frommem_email = "";
 				String fromName = "GOWL";
 				String subject = "임시 비밀번호 입니다.";
 				String msg = userVO.getMem_pwd();
@@ -145,11 +145,11 @@ public class UserServiceImpl implements UserService{
 		// Mail Server 설정
 				String charSet = "utf-8";
 				String hostSMTP = "smtp.naver.com";
-				String hostSMTPid = "springmailtest";
-				String hostSMTPpwd = "1!2@3#4$";
+				String hostSMTPid = "";
+				String hostSMTPpwd = "";
 
 				// 보내는 사람 mem_email, 제목, 내용
-				String frommem_email = "springmailtest@naver.com";
+				String frommem_email = "";
 				String fromName = "GOWL";
 				String subject = "임시 비밀번호 입니다.";
 				String msg = userVO.getMem_pwd();
@@ -237,11 +237,11 @@ public class UserServiceImpl implements UserService{
 	      // Mail Server 설정
 	      String charSet = "utf-8";
 	      String hostSMTP = "smtp.naver.com";
-	      String hostSMTPid = "springmailtest";
-	      String hostSMTPpwd = "1!2@3#4$";
+	      String hostSMTPid = "";
+	      String hostSMTPpwd = "";
 
 	      // 보내는 사람 mem_email, 제목, 내용
-	      String frommem_email = "springmailtest@naver.com";
+	      String frommem_email = "";
 	      String fromName = "GOWL";
 	      String subject = "금고에 비정상적인 접근이 감지되었습니다 확인부탁드립니다.";
 
